@@ -1,3 +1,4 @@
+import os
 import requests
 import mysql.connector
 
@@ -5,10 +6,10 @@ import mysql.connector
 def conectar_mysql():
     try:
         conn = mysql.connector.connect(
-            host="127.0.0.1",
-            user="root",
-            password="G@mes8090",
-            database="sidra"
+            host=os.getenv("MYSQL_HOST", "127.0.0.1"),
+            user=os.getenv("MYSQL_USER", "root"),
+            password=os.getenv("MYSQL_PASSWORD", "G@mes8090"),
+            database=os.getenv("MYSQL_DATABASE", "sidra")
         )
         print("✅ Conectado ao MySQL com sucesso.")
         return conn
